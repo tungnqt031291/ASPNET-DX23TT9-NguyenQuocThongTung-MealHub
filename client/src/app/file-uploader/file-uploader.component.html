@@ -1,0 +1,82 @@
+<div class="row mt-3 mb-3">
+  <div class="col-md-12" style="width: 80%">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <h4>Upload Photo</h4>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedFile && imagePath">
+      <div class="d-flex flex-row" style="justify-content: space-between">
+        <div>
+          <label for="name">Name:</label>
+          <p id="name">
+            {{ selectedFile.name }}
+          </p>
+        </div>
+
+        <div>
+          <label for="size">Size</label>
+          <p id="size">
+            {{ sizeInMb }}
+          </p>
+        </div>
+        <div>
+          <label for="type">Type</label>
+          <p id="type">
+            {{ selectedFile.type }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image url  -->
+
+    <!-- Image preview  -->
+    <div class="row">
+      <div class="col-xs-12">
+        <img
+          [src]="imagePath"
+          alt=""
+          class="img-responsive img-thumbnail"
+          width="80%"
+          [style]="
+            imagePath.length < 1 ? 'visibility: hidden' : 'visibility: visible'
+          "
+          style="margin: auto"
+          height="300px"
+        />
+      </div>
+    </div>
+
+    <div class="my-3">
+      <progressbar
+        class="progress-striped active"
+        [value]="progress"
+        [type]="type"
+        >{{ type }}</progressbar
+      >
+    </div>
+
+    <input
+      style="display: none"
+      type="file"
+      (change)="onFileChanged($event)"
+      accept="image/png, image/jpeg"
+      #fileInput
+    />
+    <button
+      class="btn btn-primary me-3"
+      type="button"
+      [disabled]="!selectedFile"
+      (click)="uploadFile()"
+    >
+      Upload!
+    </button>
+    <button class="btn btn-secondary" type="button" (click)="fileInput.click()">
+      Select File
+    </button>
+  </div>
+</div>

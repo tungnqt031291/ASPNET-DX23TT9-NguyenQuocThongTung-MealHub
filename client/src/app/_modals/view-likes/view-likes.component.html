@@ -1,0 +1,49 @@
+<div class="row ms-1">
+  <div class="col-md-6">
+    <button
+      type="button"
+      class="btn"
+      style="color: #333"
+      (click)="showUsers(template)"
+    >
+      <span class="text-secondary" style="font-size: 1.1rem; font-weight: 500">
+        {{ likeCount }} {{ likeCount === 1 ? "like" : "likes" }}</span
+      >
+    </button>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Liked by</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="list-group">
+      <li
+        [routerLink]="'/users/' + like.userName"
+        class="list-group-item"
+        *ngFor="let like of likes"
+        (click)="modalRef?.hide()"
+        style="cursor: pointer"
+      >
+        <img
+          [src]="like.userPhotoUrl || './assets/default-avatar.png'"
+          alt=""
+          class="img-responsive img-thumbnail rounded-circle"
+          width="40px"
+        />
+        <span style="display: inline-block">
+          {{ like.userName }}
+        </span>
+      </li>
+    </ul>
+  </div>
+</ng-template>

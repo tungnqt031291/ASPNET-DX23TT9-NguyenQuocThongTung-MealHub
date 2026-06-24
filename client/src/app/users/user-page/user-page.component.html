@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row" *ngIf="member$ | async as member">
+    <div class="col-md-3">
+      <img
+        [src]="member.photo ? member.photo.url : './assets/default-avatar.png'"
+        [alt]="member.alias"
+        class="rounded-circle img-responsive"
+        style="width: 120px"
+      />
+    </div>
+    <div class="col-md-9">
+      <h4 style="display: inline-block" class="">{{ member.alias }}</h4>
+      <!-- <button
+        type="button"
+        class="btn btn-dark me-4"
+        style="display: inline-block"
+      >
+        Message
+      </button> -->
+      <app-add-chat [selectedMember]="member"></app-add-chat>
+      <a
+        type="button"
+        class="btn btn-secondary"
+        style="display: inline-block"
+        [routerLink]="'edit'"
+        *ngIf="accountService.getCurrentUser()?.userName === member.userName"
+      >
+        Edit Profile
+      </a>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <strong> About me </strong>
+          <p>
+            {{ member.description }}
+          </p>
+        </div>
+      </div>
+      <div class="row mt-4 mb-3" *ngIf="recipes$ | async as recipes">
+        <div class="col-md-4">
+          <strong>
+            {{ recipes.length }}
+          </strong>
+          {{ recipes.length == 1 ? "recipe" : "recipes" }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-3"></div>
+      <div class="col-md-1 ms-2">
+        <strong>Age</strong>
+        <div class="row">
+          <div class="col-md-1">
+            {{ (member.dateOfBirth | timestamp).split("years")[0] }}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-1"><strong>Gender</strong> {{ member.gender }}</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <strong>Member since</strong> {{ member.memberSince | date }}
+      </div>
+    </div>
+  </div>
+
+  <app-user-recipe-card
+    *ngIf="recipes$ | async as recipes"
+    [recipes]="recipes"
+  ></app-user-recipe-card>
+</div>

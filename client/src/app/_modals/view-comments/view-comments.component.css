@@ -1,0 +1,15 @@
+.comment-box {
+    margin-left: 0px;
+    width: 100%;
+    white-space: pre-line; /* Wrap text preserving line breaks */
+    word-wrap: break-word; /* Break long words if needed */
+    max-height: 200px; /* Set a maximum height for the comment box */
+    overflow-y: auto; /* Add a vertical scrollbar if the content overflows */
+    padding: 10px; /* Optional: Add padding for better spacing */
+  }
+  
+  .delete-box {
+    position: absolute;
+    right: 0px;
+    top: 1.3rem;
+  }

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let recipe of recipes">
+      <div class="card">
+        <a [routerLink]="'/recipes/' + recipe.id" style="text-decoration: none">
+          <img
+            [src]="recipe.imageUrl || './assets/default.png'"
+            class="card-img-top img-responsive"
+            alt="Recipe Image"
+            style="width: 100%"
+          />
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe.name }}</h5>
+          <p class="card-text">{{ recipe.description | truncate : 100 }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="row mb-3">
+  <div class="col" style="color: #fff">Chat rooms</div>
+  <div class="col">
+    <app-add-chat></app-add-chat>
+  </div>
+</div>
+<ul
+  class="list-group"
+  style="height: 35vw; overflow-y: auto"
+  *ngIf="messageService.messagingUsers$ | async as messagingUsers"
+>
+  <a
+    class="list-group-item"
+    style="width: 100px"
+    style="cursor: pointer"
+    *ngFor="let user of messagingUsers"
+    [routerLink]="['/messages', user.userName]"
+    [routerLinkActive]="'active'"
+  >
+    <img
+      [src]="user.photo.url"
+      alt=""
+      width="40px"
+      class="me-2 img-responsive rounded-circle img-thumbail img-card-top"
+    />
+    {{ user.alias }}
+    <span
+      class="ms-3 badge rounded-pill"
+      [class.bg-primary]="
+        (presenceService.onlineUsers$ | async)?.includes(user.userName)
+      "
+      [class.bg-danger]="
+        !(presenceService.onlineUsers$ | async)?.includes(user.userName)
+      "
+    >
+      {{
+        (presenceService.onlineUsers$ | async)?.includes(user.userName)
+          ? "online"
+          : "offline"
+      }}
+    </span>
+  </a>
+</ul>

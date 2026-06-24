@@ -1,0 +1,52 @@
+<div class="card" *ngIf="isMember(item)">
+  <div class="card-img-wrapper">
+    <img
+      [src]="item.photo ? item.photo.url : './assets/default-avatar.png'"
+      [alt]="item.alias"
+      class="card-img-top"
+      style="width: 150px"
+    />
+    <ul class="list-inline member-icons animate text-center">
+      <li class="list-inline-item">
+        <button class="btn" id="editPhoto" (click)="showEditPhoto(template)">
+          Edit
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="card" *ngIf="isRecipe(item)">
+  <div class="card-img-wrapper">
+    <img
+      [src]="item.imageUrl || './assets/default.png'"
+      [alt]="item.name"
+      class="card-img-top"
+      style="width: 150px"
+    />
+    <ul class="list-inline member-icons animate text-center">
+      <li class="list-inline-item">
+        <button class="btn" id="editPhoto" (click)="showEditPhoto(template)">
+          Edit
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Upload new Photo</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-photo-uploader [item]="item"></app-photo-uploader>
+  </div>
+</ng-template>

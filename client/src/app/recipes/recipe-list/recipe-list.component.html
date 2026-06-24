@@ -1,0 +1,49 @@
+<div class="container-fluid row">
+  <div class="col-md-5">
+    <button class="btn btn-success" (click)="navigateToNewRecipe()">
+      New Recipe
+    </button>
+  </div>
+  <div class="col-md-7">
+    <div class="d-flex align-items-center">
+      <span class="me-4" style="font-size: 1.2rem; color: #333"
+        >Categories</span
+      >
+      <select
+        name="filter"
+        id="filter"
+        class="form-select"
+        style="color: #333"
+        [(ngModel)]="filterCategory"
+        (change)="onCategoryChange($event)"
+      >
+        <option *ngFor="let category of categories" [value]="category.value">
+          {{ category.display }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div
+  class="d-flex flex-column"
+  style="justify-content: center; margin: auto"
+  *ngIf="recipes"
+>
+  <div class="list-group" *ngFor="let recipe of recipes; let i = index">
+    <app-recipe-item [recipe]="recipe" [index]="i"></app-recipe-item>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <div
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="300"
+    (scrolled)="onScroll()"
+    [scrollWindow]="true"
+  ></div>
+</div>

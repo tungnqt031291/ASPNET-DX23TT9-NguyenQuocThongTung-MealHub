@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h1 class="display-4">Error 400</h1>
+  <p class="lead text-danger">
+    <!-- <fa-icon [icon]="faD" size="lg"></fa-icon> -->
+    <ng-container *ngIf="errorArr">
+      <ul class="list-group">
+        <li *ngFor="let err of errorArr">
+          {{ err }}
+        </li>
+      </ul>
+    </ng-container>
+    <ng-container *ngIf="error">
+      {{ error.message }}
+    </ng-container>
+  </p>
+  <hr class="my-4" />
+</div>

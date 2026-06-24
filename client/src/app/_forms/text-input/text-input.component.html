@@ -1,0 +1,22 @@
+<div class="form-floating mb-3">
+  <input
+    width="fit-content"
+    type="{{ type }}"
+    class="form-control"
+    id="{{ label }}"
+    [formControl]="control"
+    [class.is-invalid]="control.touched && control.invalid"
+  />
+  <div *ngIf="control.errors && control.touched" class="text-danger">
+    <div *ngIf="control.hasError('required')">{{ label }} is required.</div>
+    <div *ngIf="control.hasError('minlength')">
+      {{ label }} must be at least
+      {{ control.errors["minlength"].requiredLength }}
+    </div>
+    <div *ngIf="control.hasError('notMatching')">Passwords do not match</div>
+
+    <div *ngIf="control.hasError('usernameTaken')">Username is taken</div>
+
+  </div>
+  <label for="{{ label }}">{{ label }}</label>
+</div>

@@ -1,0 +1,56 @@
+<div class="d-flex flex-column" style="justify-content: center">
+  <h2 class="text-center text-secondary">Welcome to Recipe Book</h2>
+  <hr />
+
+  <div>
+    <div
+      class="card border-light mb-4 me-3"
+      style="max-width: 18rem; display: inline-block"
+      *ngFor="let card of exampleCards"
+    >
+      <div class="card-header">{{ card.username }}</div>
+      <div class="card-body">
+        <h4 class="card-title">{{ card.title }}</h4>
+        <p class="card-text">
+          {{ card.body }}
+        </p>
+      </div>
+      <div class="card-footer">
+        <p>
+          Rated
+          <rating
+            [(ngModel)]="card.rating"
+            [max]="max"
+            [readonly]="isReadonly"
+          ></rating>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <figure class="mb-0">
+    <blockquote class="blockquote">
+      <p class="mb-0">Explore The <strong>Cook</strong> Side Of You!</p>
+      <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"></rating>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Mary S.<cite title="Source Title"> the brain archives</cite>
+    </figcaption>
+  </figure>
+
+  <div>
+    <div class="text-center mb-3">
+      <button
+        *ngIf="!(accountService.currentUser$ | async)"
+        class="btn btn-primary btn-lg me-4"
+        style="padding: 0.5rem 2rem"
+        (click)="navigateToRegister()"
+      >
+        Register
+      </button>
+      <button class="btn btn-primary btn-info btn-lg" (click)="get400Error()">
+        Learn more
+      </button>
+    </div>
+  </div>
+</div>

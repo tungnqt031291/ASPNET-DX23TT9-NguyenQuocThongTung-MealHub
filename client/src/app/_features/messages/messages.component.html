@@ -1,0 +1,25 @@
+<div class="container ">
+  <div class="row">
+    <div class="col" style="background-color: #333">
+      <app-messaging-users (on-no-chats-found)="onNoChatsFound($event)"></app-messaging-users>
+    </div>
+    <div class="col-md-8">
+      <div class="mt-5" *ngIf="noChatsFound" id="quote">
+        <ng-container >
+          <h4 class="mb-3">No chat rooms found, but worry not as...</h4>
+          <figure class="">
+            <blockquote class="blockquote">
+              <p class="mb-0">The wise warrior avoids the battle.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Sun-Tzu, <cite title="Source Title">The Art of War</cite>
+            </figcaption>
+          </figure>
+        </ng-container>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+

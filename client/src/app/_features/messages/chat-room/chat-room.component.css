@@ -1,0 +1,43 @@
+#messageBox {
+  max-height: 60vh;
+  min-height: 40vh;
+  overflow-y: auto;
+  width: 99.6%;
+  background-color: #302f2f;
+}
+
+.table-info {
+  --bs-table-bg: var(--bs-blue);
+  --bs-table-border-color: var(--bs-blue);
+
+  color: #fff;
+}
+
+
+#new-message {
+  border-radius: 0;
+}
+
+.form-control {
+  outline: none;
+  outline-color: #fff;
+  box-shadow: none;
+}
+
+#message-btn {
+  color: #333;
+  background-color: transparent;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  transition: all 0.3s ease;
+}
+
+#message-btn:hover {
+  color: rgb(14, 151, 74);
+}
+
+
+tbody .custom-table {
+  border-radius: 30%;
+}
+

@@ -1,0 +1,49 @@
+.heart-unliked {
+  color: #968787;
+  font-size: 1.5rem;
+
+  outline: #333;
+  transition: all 0.3s ease;
+}
+
+.heart-liked {
+  color: crimson;
+  font-size: 1.5rem;
+}
+
+#comment {
+  color: #968787;
+  outline: #333;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+textarea {
+  resize: vertical;
+}
+#comment:hover {
+  color: #333;
+}
+
+#comment-btn {
+  color: #333;
+  position: relative;
+  top: -2.3rem;
+  right: -23rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#comment-btn:hover {
+  color: rgb(66, 173, 82);
+}
+#star {
+  color: #968787;
+  outline: #333;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+#star:hover {
+  color: rgb(255, 170, 0);
+}

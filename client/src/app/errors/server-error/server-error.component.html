@@ -1,0 +1,11 @@
+<div class="jumbotron">
+  <h1 class="display-4">500, That's an error.</h1>
+  <ng-container *ngIf="error">
+    <h5 class="text-danger">
+      {{ error.title }}
+    </h5>
+  </ng-container>
+  <p class="lead">Sorry, we are experiencing technical difficulties</p>
+  <p class="lead">Try refreshing the page</p>
+  <hr class="my-4" />
+</div>

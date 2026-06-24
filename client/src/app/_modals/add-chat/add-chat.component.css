@@ -1,0 +1,30 @@
+#searchBar,#messageText {
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: fit-content;
+  color: #fff;
+}
+
+.modal-header h4 {
+  color: #fff;
+  --bs-modal-header-border-color: #333;
+}
+
+.list-group-item {
+  background-color: #333;
+  outline: none;
+  color: #fff;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+
+.list-group-item:hover {
+  background-color: #3f3f3f;
+}
+
+.list-group-item.active {
+  background-color: #4d4b4b;
+}

@@ -1,0 +1,66 @@
+<div class="container" *ngIf="user">
+  <div class="row">
+    <div class="col-md-4">
+      <app-photo-upload [item]="user"></app-photo-upload>
+    </div>
+    <div class="col-md-8">
+      <form
+        [formGroup]="userEditForm"
+        (ngSubmit)="userEditForm.valid && updateUserInfo()"
+      >
+        <div class="mb-3 text-center">
+          <label class="me-3">Gender</label>
+          <label class="form-check-label me-3">
+            <input
+              type="radio"
+              class="form-check-input"
+              value="Male"
+              formControlName="gender"
+            />
+            Male
+          </label>
+          <label class="form-check-label">
+            <input
+              type="radio"
+              class="form-check-input"
+              value="Female"
+              formControlName="gender"
+            />
+            Female
+          </label>
+        </div>
+
+        <app-text-input
+          [formControl]="$any(userEditForm.controls['alias'])"
+          [type]="'text'"
+          [label]="'Alias'"
+        ></app-text-input>
+
+        <app-textarea
+          [formControl]="$any(userEditForm.controls['description'])"
+          [label]="'About me'"
+          [rows]="6"
+        ></app-textarea>
+
+        <div class="text-center">
+          <button
+            class="btn btn-success me-4"
+            type="submit"
+            style="padding: 0.5rem 2rem"
+            [disabled]="!(userEditForm.valid && userEditForm.dirty)"
+          >
+            Update Info
+          </button>
+          <button
+            class="btn btn-secondary ms-4"
+            type="button"
+            (click)="cancel()"
+            style="padding: 0.5rem 2rem"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

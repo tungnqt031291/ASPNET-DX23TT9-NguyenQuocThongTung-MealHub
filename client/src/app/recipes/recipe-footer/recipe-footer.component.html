@@ -1,0 +1,14 @@
+<div class="card-footer">
+  <app-like-button [recipe]="recipe"></app-like-button>
+</div>
+<app-view-likes
+  [likeCount]="recipe.likeCount"
+  [likes]="recipe.likes"
+></app-view-likes>
+
+<app-view-comments
+  [recipe]="recipe"
+  [commentCount]="recipe.comments.length"
+></app-view-comments>
+
+<app-add-comment [recipeId]="recipe.id || -1"></app-add-comment>

@@ -1,0 +1,12 @@
+<button
+  type="button"
+  class="btn me-4"
+  style="height: fit-content"
+  (click)="onHeartClick()"
+>
+  <fa-icon
+    [icon]="faHeart"
+    id="heart"
+    [ngClass]="recipe.hasLiked ? 'heart-liked' : 'heart-unliked'"
+  ></fa-icon>
+</button>

@@ -1,0 +1,48 @@
+<button
+  *ngIf="accountService.currentUser$ | async"
+  type="button"
+  class="btn btn-dark ms-4 me-3"
+  style="padding: 0.3rem 1.8rem"
+  (click)="onShowModal(template)"
+>
+  <fa-icon [icon]="faInbox"></fa-icon>
+  <span
+    *ngIf="presenceService.newMessages$ | async as newMessages"
+    class="badge bg-primary rounded-pill"
+    style="position: absolute; top: 0.3rem; right: 1rem"
+    >{{ newMessages.length }}</span
+  >
+</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">New Messages</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div
+    class="modal-body"
+    *ngIf="presenceService.newMessages$ | async as newMessages"
+  >
+    <ul class="list-group">
+      <a
+        class="list-group-item"
+        style="cursor: pointer"
+        *ngFor="let user of newMessages"
+        (click)="seeMessage(user.username)"
+      >
+        {{ user.alias }}
+
+        <span style="display: inline-block">
+          has sent you a new message! Click to see
+        </span>
+      </a>
+    </ul>
+  </div>
+</ng-template>

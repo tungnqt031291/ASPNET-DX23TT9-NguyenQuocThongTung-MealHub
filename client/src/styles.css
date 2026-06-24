@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/bootswatch/dist/minty/bootstrap.min.css"; */
+
+/* Define the styles for the scrollbar track (the background) */
+::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+}
+
+/* Define the styles for the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Set the color of the thumb */
+  border-radius: 5px; /* Add rounded corners to the thumb */
+}
+
+/* Define the styles for the scrollbar track when the user hovers over it */
+::-webkit-scrollbar-thumb:hover {
+  background: #c8c8c8; /* Change the color on hover */
+}
+
+/* Define the styles for the scrollbar track when it's in the pressed state */
+::-webkit-scrollbar-thumb:active {
+  background: #fff; /* Change the color when pressed */
+}

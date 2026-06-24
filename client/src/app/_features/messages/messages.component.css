@@ -1,0 +1,11 @@
+.container {
+  background-color: #363333;
+  height: 40vw;
+  width: 100vw;
+  /* height: 40vw; */
+}
+
+#quote h4, #quote  {
+   color: #b0b0b0;
+   font-weight: bold;
+}

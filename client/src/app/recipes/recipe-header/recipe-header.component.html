@@ -1,0 +1,20 @@
+<div class="card-title">
+  <a type="button" class="link-active" [routerLink]="'/users/' + username">
+    <img
+      [src]="memberPhoto"
+      alt=""
+      loading="lazy"
+      class="rounded-circle img-thumbnail me-3"
+      style="width: 60px"
+    />
+  </a>
+  <h5 style="display: inline-block" class="me-2">
+    <strong> {{ username }}</strong>
+  </h5>
+  <fa-icon [icon]="faDot" class="me-2"></fa-icon>
+  {{ timeStamp | timestamp }}
+  <div class="float-end me-2">
+    <fa-icon [icon]="faTag" class=""></fa-icon>
+    <p class="ms-2" style="display: inline-block">{{ category }}</p>
+  </div>
+</div>

@@ -1,0 +1,168 @@
+<div class="col-md-12" *ngIf="recipeForm?.dirty && !submitted">
+  <div class="alert alert-dismissible alert-warning">
+    <p>
+      <strong>Information: </strong>You have unsaved changes. Any unsaved
+      changes will be lost
+    </p>
+  </div>
+</div>
+
+<div class="row" *ngIf="!submitted">
+  <div class="col-md-4 mb-3" *ngIf="editMode && recipe">
+    <app-photo-upload [item]="recipe"></app-photo-upload>
+  </div>
+
+  <div class="col-md-8">
+    <h1>{{ editMode ? "Your" : "New" }} Recipe</h1>
+
+    <form
+      *ngIf="recipeForm"
+      [formGroup]="recipeForm"
+      (ngSubmit)="onSubmit()"
+      autocomplete="on"
+    >
+      <app-text-input
+        [formControl]="$any(recipeForm.controls['name'])"
+        [type]="'text'"
+        [label]="'Recipe name'"
+      ></app-text-input>
+      <!-- Categories  -->
+      <div class="form-group" style="width: 470px">
+        <h5 class="my-4">Category</h5>
+        <select id="categories" formControlName="category" class="form-control">
+          <option
+            *ngFor="let category of categories"
+            [ngValue]="category.value"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Ingredients  -->
+      <div
+        style="overflow-x: hidden; transition: 0.2s height ease"
+        formArrayName="ingredients"
+      >
+        <div class="my-5" style="display: flex; align-items: center">
+          <h5 class="me-4">Ingredients</h5>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="width: fit-content"
+            (click)="onAddIngredient()"
+          >
+            Add Ingredient
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            style="margin-left: 1.2rem"
+            (click)="onRemoveAllIngredients()"
+          >
+            Remove All
+          </button>
+        </div>
+
+        <div
+          id="ingredient-group"
+          class="d-flex flex-row"
+          *ngFor="let ingredient of controls; let i = index"
+          [formGroupName]="i"
+          style="margin-bottom: 1rem; justify-content: flex-start"
+          [@fade-out]
+        >
+          <div class="me-3">
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              formControlName="name"
+              placeholder="Name"
+            />
+          </div>
+          <div class="me-3">
+            <input
+              type="number"
+              name="amount"
+              class="form-control"
+              formControlName="amount"
+              placeholder="Amount"
+            />
+          </div>
+
+          <div class="">
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="onDeleteIngredient(i)"
+            >
+              <fa-icon
+                [icon]="faTrash"
+                [style]="{ padding: '0 1rem' }"
+              ></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description  -->
+
+      <app-textarea
+        [formControl]="$any(recipeForm.controls['description'])"
+        [label]="'Description'"
+        [rows]="6"
+      ></app-textarea>
+
+      <!-- Preparation Steps  -->
+      <app-textarea
+        [formControl]="$any(recipeForm.controls['preparation'])"
+        [label]="'Preparation Steps'"
+        [rows]="6"
+      ></app-textarea>
+
+
+      <button
+        [disabled]="!(recipeForm.valid && recipeForm.touched)"
+        style="width: 200px"
+        type="submit"
+        class="btn btn-success mb-3"
+      >
+        {{ editMode ? "Save changes" : "Add recipe" }}
+      </button>
+
+      <button
+        (click)="onCancelForm()"
+        style="width: 200px"
+        type="button"
+        class="btn btn-danger ms-4 mb-3"
+      >
+        Cancel
+      </button>
+    </form>
+  </div>
+
+  <div class="col-4"></div>
+</div>
+
+<div class="container" *ngIf="submitted && recipe">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-dismissible alert-success">
+        <strong>Well done!</strong> You successfully
+        {{ editMode ? "updated your Recipe!" : "created a Recipe!" }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 text-center" *ngIf="editMode">
+      <a (click)="navigateAway()" class="btn btn-success">Broswe recipes</a>
+    </div>
+    <div class="col-md-8 text-center" *ngIf="!editMode && recipe">
+      <a [routerLink]="'/recipes/' + recipe.id" class="btn btn-success"
+        >View Recipe</a
+      >
+    </div>
+  </div>
+</div>

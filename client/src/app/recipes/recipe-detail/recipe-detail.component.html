@@ -1,0 +1,64 @@
+<div class="row" *ngIf="recipe">
+  <div class="col-md-6">
+    <app-recipe-card [recipe]="recipe">
+      <div card-body>
+        <h3 class="card-header">{{ recipe.name }}</h3>
+        <img
+          [src]="recipe.imageUrl || './assets/default.png'"
+          class="card-img-top img-thumbnail"
+          [alt]="recipe.name"
+          width="100%"
+          height="100%"
+          style="font-size: 1.125rem; text-anchor: middle"
+        />
+      </div>
+    </app-recipe-card>
+  </div>
+
+  <div class="col-md-6">
+    <tabset>
+      <tab heading="Description">
+        <h4 class="mt-2">Description</h4>
+        <hr />
+        <div class="card-text" style="white-space: pre-line">
+          {{ recipe.description }}
+        </div>
+      </tab>
+
+      <tab heading="Ingredients">
+        <h4 class="mt-2">Ingredients</h4>
+        <hr />
+        <ul
+          class="list-group list-group-flush"
+          *ngFor="let ing of recipe.ingredients"
+        >
+          <li class="list-group-item" style="border-bottom: 1px solid">
+            {{ ing.name }} <span class="float-end">{{ ing.amount }}</span>
+          </li>
+        </ul>
+      </tab>
+
+      <tab heading="Preparation">
+        <h4 class="mt-2">Preparation Steps</h4>
+        <hr />
+        <div class="card-text mb-3" style="white-space: pre-line;max-height: 60vh; overflow-y: auto;">
+          {{ recipe.preparationSteps }}
+        </div>
+      </tab>
+
+      <tab heading="Options" *ngIf="OwnsRecipe">
+        <h4 class="mt-2">Options</h4>
+        <hr />
+        <button type="button" class="btn" (click)="onDeleteRecipe()">
+          <h6 class="text-danger">Delete Recipe</h6>
+        </button>
+        <hr />
+
+        <a type="button" class="btn" [routerLink]="'edit'">
+          <h6 class="text-primary">Edit Recipe</h6>
+        </a>
+        <hr />
+      </tab>
+    </tabset>
+  </div>
+</div>

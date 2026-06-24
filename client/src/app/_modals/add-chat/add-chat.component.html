@@ -1,0 +1,103 @@
+<div class="col-md-2 ms-3" style="display: inline-block">
+  <a
+    type="button"
+    class="btn btn-dark"
+    style="color: #fff; padding: 0.3rem 2.5rem"
+    (click)="onShowModal(template)"
+  >
+    <fa-icon [icon]="faEnvelope"></fa-icon>
+  </a>
+</div>
+
+<ng-template #template>
+  <div class="modal-header bg-dark">
+    <h4 class="modal-title pull-left">New message</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body bg-dark">
+    <form
+      class="d-flex flex-column"
+      #messageForm="ngForm"
+      (ngSubmit)="onSendMessage(messageForm)"
+    >
+      <div class="row" *ngIf="!userSelected">
+        <div class="col-md-1">
+          <label
+            for="searchBar me-3"
+            style="color: #fff; font-weight: bold; display: inline-block"
+            >To:
+          </label>
+        </div>
+        <div class="col-md-10">
+          <input
+            style="color: #fff; font-weight: bold; display: inline-block"
+            id="searchBar"
+            class="me-sm-2 ms-2"
+            name="searchBar"
+            type="search"
+            placeholder="Search..."
+            [(ngModel)]="searchQuery"
+            (input)="searchUsers()"
+          />
+        </div>
+        <hr />
+        <p *ngIf="!members || members.length < 1">No members found...</p>
+      </div>
+      <ul
+        class="list-group"
+        *ngIf="members && members.length > 0 && !userSelected"
+      >
+        <a
+          style="cursor: pointer"
+          class="list-group-item"
+          name="member-card"
+          *ngFor="let member of members"
+          (click)="selectedUser(member)"
+        >
+          <img
+            [src]="member.photo.url"
+            alt=""
+            class="img-responsive rounded-circle"
+            width="40px"
+          />
+          <span>{{ member.userName }} </span>
+        </a>
+      </ul>
+      <a
+        class="list-group-item"
+        style="cursor: pointer"
+        *ngIf="selectedMember && userSelected"
+      >
+        <img
+          [src]="selectedMember.photo.url"
+          alt=""
+          class="img-responsive rounded-circle"
+          width="40px"
+        />
+        <span>{{ selectedMember.userName }} </span>
+        <button
+          type="button"
+          class="btn float-end"
+          (click)="removeSelectedUser()"
+        >
+          <fa-icon [icon]="faClose"></fa-icon>
+        </button>
+      </a>
+
+      <button
+        type="submit"
+        class="btn btn-info"
+        [disabled]="!messageForm.valid || !userSelected"
+      >
+        Chat
+      </button>
+    </form>
+  </div>
+</ng-template>

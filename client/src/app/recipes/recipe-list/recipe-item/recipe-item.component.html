@@ -1,0 +1,21 @@
+<app-recipe-card
+  [recipe]="recipe"
+  [customCardStyle]="'max-width: 50%; margin: auto'"
+>
+  <div card-body>
+    <div class="card-body">
+      <h4 class="card-title mb-3 text-center">{{ recipe.name }}</h4>
+    </div>
+    <div [routerLink]="['/recipes/' + recipe.id]" style="cursor: pointer">
+      <img
+        [src]="recipe.imageUrl || './assets/default.png'"
+        [alt]="recipe.name"
+        class="img-responsive d-block user-select-none"
+        style="height: 70%; width: 70%; margin: auto"
+      />
+      <div class="card-body">
+        <p class="card-text">{{ recipe.description | truncate : 200 }}</p>
+      </div>
+    </div>
+  </div>
+</app-recipe-card>
